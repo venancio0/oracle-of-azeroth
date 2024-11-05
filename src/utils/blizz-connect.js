@@ -47,4 +47,30 @@ async function getQuestByIdBlizz(id) {
   return response.data; // Retorna os dados da quest
 }
 
-module.exports = { getQuestsBlizz, getQuestByIdBlizz };
+async function getQuestCategoriesBlizz() {
+  const token = await getBlizzardToken(); // Obtém o token
+  const url = 'https://us.api.blizzard.com/data/wow/quest/category/index/?namespace=static-us&locale=en_US';
+  
+  const response = await axios.get(url, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
+
+  return response.data; // Retorna os dados das categorias de quests
+}
+
+async function getQuestCategoriesByIdBlizz(id) {
+  const token = await getBlizzardToken(); // Obtém o token
+  const url = `https://us.api.blizzard.com/data/wow/quest/category/${id}?namespace=static-us&locale=en_US`;
+  
+  const response = await axios.get(url, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
+
+  return response.data; // Retorna os dados da categoria de quests
+}
+
+module.exports = { getQuestsBlizz, getQuestByIdBlizz, getQuestCategoriesBlizz, getQuestCategoriesByIdBlizz };

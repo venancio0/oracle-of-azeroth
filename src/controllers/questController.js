@@ -26,4 +26,29 @@ exports.getQuestById = async (req, res) => {
       res.status(500).json({ error: 'Error fetching quest' });
     }
   };
+
+exports.getQuestCategories = async (req, res) => {
+    try {
+      const categories = await blizzardConnector.getQuestCategoriesBlizz(); // Chama a função que busca categorias de quests da Blizzard
+      res.json(categories);
+    } catch (error) {
+      console.error('Error fetching quest categories from Blizzard API:', error); // Log do erro
+      res.status(500).json({ error: 'Error fetching quest categories' });
+    }
+  }
+
+exports.getQuestCategoriesById = async (req, res) => { 
+    const categoryId = req.params.id;
+    try {
+      const category = await blizzardConnector.getQuestCategoriesByIdBlizz(categoryId); // Chama a função que busca a categoria de quests da Blizzard
+      if (category) {
+        res.json(category); // Retorna a categoria diretamente
+      } else {
+        res.status(404).json({ error: 'Category not found' });
+      }
+    } catch (error) {
+      console.error('Error fetching quest category from Blizzard API:', error); // Log do erro
+      res.status(500).json({ error: 'Error fetching quest category' });
+    }
+}
   
