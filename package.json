@@ -4,6 +4,7 @@
   "description": "This Unofficial World of Warcraft project provides an easily navigable structure for players and lore enthusiasts to follow the game's narrative in sequence, presenting quests in a streamlined, story-driven timeline. Built with JavaScript and Node.js.",
   "main": "index.js",
   "scripts": {
+    "start": "node src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
